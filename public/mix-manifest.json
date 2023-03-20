@@ -1,7 +1,4 @@
 {
-    "/scripts/growtype-search.js": "/scripts/growtype-search.js?id=82aa6dd4e64725be435472f1b3674c8b",
-    "/styles/growtype-search.css": "/styles/growtype-search.css?id=1527b2c46fc7d3641ea08ea91da327ea",
-    "/images/close.svg": "/images/close.svg?id=21e7a5b369459063e5c36d34f2cc5ee8",
-    "/images/loader.svg": "/images/loader.svg?id=2cc0293cba6985b5fcdd2a6c91b0bbec",
-    "/images/search.svg": "/images/search.svg?id=696ad6182e4c216428988983f96b838f"
+    "/scripts/growtype-cpt.js": "/scripts/growtype-cpt.js?id=539f1a9a64421aaa2e92f8131b49bb91",
+    "/styles/growtype-cpt.css": "/styles/growtype-cpt.css?id=68b329da9893e34099c7d8ad5cb9c940"
 }
