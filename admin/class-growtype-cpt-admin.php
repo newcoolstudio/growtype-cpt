@@ -72,7 +72,7 @@ class Growtype_Cpt_Admin
      */
     public function enqueue_styles()
     {
-        wp_enqueue_style($this->growtype_cpt, GROWTYPE_CPT_URL_PUBLIC . 'css/growtype-cpt-admin.css', array (), $this->version, 'all');
+        wp_enqueue_style($this->growtype_cpt, GROWTYPE_CPT_URL . 'admin/css/growtype-cpt-admin.css', array (), $this->version, 'all');
     }
 
     /**
@@ -82,7 +82,7 @@ class Growtype_Cpt_Admin
      */
     public function enqueue_scripts()
     {
-        wp_enqueue_script($this->growtype_cpt, GROWTYPE_CPT_URL_PUBLIC . 'js/growtype-cpt-admin.js', array ('jquery'), $this->version, false);
+        wp_enqueue_script($this->growtype_cpt, GROWTYPE_CPT_URL . 'admin/js/growtype-cpt-admin.js', array ('jquery'), $this->version, false);
     }
 
     /**

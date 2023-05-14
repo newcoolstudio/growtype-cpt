@@ -70,7 +70,6 @@ class Growtype_Cpt_Crud
     function growtype_extended_cpt_register()
     {
         foreach ($this->cpt_keys as $cpt_key) {
-
             $key_name = $cpt_key['name'];
             $key_value = $cpt_key['value'];
 
@@ -197,8 +196,6 @@ class Growtype_Cpt_Crud
      */
     function growtype_extended_cpt_template_redirect()
     {
-
-
         if (is_single()) {
             foreach ($this->cpt_keys as $cpt_key) {
                 $key_value = $cpt_key['value'];
