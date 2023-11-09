@@ -119,10 +119,14 @@ class Growtype_Cpt_Crud
 
                 # Add some custom columns to the admin screen:
                 'admin_cols' => [
+                    'featured_image' => [
+                        'title' => 'Featured image',
+                        'post_field' => 'featured_image',
+                    ],
                     'post_modified' => [
                         'title' => 'Last Modified',
                         'post_field' => 'post_modified',
-//                        'date_format' => 'Y-m-d'
+                        'date_format' => get_option('date_format') . ' ' . get_option('time_format')
                     ],
                     $cpt_name . '_tax' => [
                         'taxonomy' => $cpt_name . '_tax'
@@ -188,6 +192,16 @@ class Growtype_Cpt_Crud
              * Extend post type 1
              */
             apply_filters('growtype_extended_cpt_' . $key_value . '_extend', $cpt_name);
+
+            /**
+             * Add options to primary pages customizer
+             */
+            add_filter('growtype_sidebar_primary_pages', function ($pages) use ($cpt_name) {
+                $pages[$cpt_name] = 'CPT - ' . $cpt_name;
+                $pages[$cpt_name . '_single'] = 'CPT - ' . $cpt_name . ' - Single';
+
+                return $pages;
+            });
         }
     }
 
