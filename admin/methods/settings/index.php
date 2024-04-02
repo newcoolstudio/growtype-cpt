@@ -14,7 +14,7 @@ class Growtype_Cpt_Admin_Settings
             'cpt', // page <title>Title</title>
             'Growtype - CPT', // menu link text
             'manage_options', // capability to access the page
-            'cpt-options', // page URL slug
+            'growtype-cpt-options', // page URL slug
             array ($this, 'cpt_options_content'), // callback function with content
             1 // priority
         );
@@ -27,7 +27,7 @@ class Growtype_Cpt_Admin_Settings
 	<form method="post" action="options.php">';
 
         settings_fields('cpt_options_settings'); // settings group name
-        do_settings_sections('cpt-options'); // just a page slug
+        do_settings_sections('growtype-cpt-options'); // just a page slug
         submit_button();
 
         echo '</form></div>';
@@ -47,7 +47,7 @@ class Growtype_Cpt_Admin_Settings
                 $key_value . '_options_settings', // section ID
                 $key_name, // title (if needed)
                 '', // callback function (if needed)
-                'cpt-options' // page slug
+                'growtype-cpt-options' // page slug
             );
 
             foreach ($options as $option) {
@@ -60,7 +60,7 @@ class Growtype_Cpt_Admin_Settings
                     $key_value . '_' . $option['name'],
                     $option['title'],
                     array ($this, 'input_callback'),
-                    'cpt-options',
+                    'growtype-cpt-options',
                     $key_value . '_options_settings',
                     [
                         'type' => $option['type'] ?? 'text',

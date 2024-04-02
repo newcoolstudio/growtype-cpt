@@ -17,6 +17,30 @@ class Growtype_Cpt_Crud
         }
 
         add_filter('growtype_customizer_extend_available_pages', array ($this, 'extend_available_pages'), 1);
+
+        /**
+         * Restrict REST API access
+         */
+        add_filter('rest_authentication_errors', array ($this, 'restrict_rest_api_access'));
+    }
+
+    function restrict_rest_api_access($result)
+    {
+        global $wp;
+
+        if (true === $result || is_wp_error($result)) {
+            return $result;
+        }
+
+        if (!is_user_logged_in() && $wp->request !== 'wp-json/jwt-auth/v1/token') {
+            return new WP_Error(
+                'rest_not_logged_in',
+                __('You are not currently logged in.'),
+                array ('status' => 401)
+            );
+        }
+
+        return $result;
     }
 
     function extend_available_pages($customizer_available_pages)
@@ -87,10 +111,9 @@ class Growtype_Cpt_Crud
             }
 
             $cpt_slug = get_option($key_value . '_slug') ? get_option($key_value . '_slug') : $cpt_name;
-
             $archive_enabled = get_option($key_value . '_archive_enabled') ? true : false;
-
             $tags_enabled = get_option($key_value . '_tags_enabled') ? true : false;
+            $show_in_rest = get_option($key_value . '_show_in_rest') ? true : false;
 
             $pt_args = array (
 
@@ -99,7 +122,9 @@ class Growtype_Cpt_Crud
 
                 'has_archive' => $archive_enabled, //Hides archive page
 
-                'show_in_rest' => true,
+                'show_in_rest' => $show_in_rest,
+
+                'show_ui' => true,
 
 //        'menu_icon' => 'dashicons-admin-users',
 

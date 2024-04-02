@@ -160,6 +160,6 @@ class Growtype_Cpt_Loader
          * Customizer
          */
         require_once GROWTYPE_CPT_PATH . 'includes/customizer/index.php';
-        new Growtype_Cpt_Customizer_Post();
+        new Growtype_Cpt_Customizer();
     }
 }

@@ -290,7 +290,7 @@ class Growtype_Cpt
     {
         $default_options = self::get_default_options();
 
-        return [
+        $default_keys = [
             [
                 'name' => 'Cpt 1',
                 'value' => 'cpt_1',
@@ -315,8 +315,15 @@ class Growtype_Cpt
                 'name' => 'Cpt 5',
                 'value' => 'cpt_5',
                 'options' => $default_options
+            ],
+            [
+                'name' => 'Cpt 6',
+                'value' => 'cpt_6',
+                'options' => $default_options
             ]
         ];
+
+        return apply_filters('growtype_cpt_default_keys', $default_keys, $default_options);
     }
 
     /**
@@ -357,6 +364,12 @@ class Growtype_Cpt
                 'title' => 'Tags Enabled (Same tags for posts)',
                 'name' => 'tags_enabled',
                 'type' => 'checkbox'
+            ],
+            [
+                'title' => 'Show in rest',
+                'name' => 'show_in_rest',
+                'type' => 'checkbox',
+                'default_value' => true
             ]
         ];
     }
