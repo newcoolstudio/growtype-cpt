@@ -4,13 +4,11 @@ class Growtype_Cpt_Crud
 {
     public function __construct()
     {
-        $this->cpt_keys = Growtype_Cpt::get_keys();
-
         add_action('init', array ($this, 'growtype_extended_cpt_register'));
 
         add_action('template_redirect', array ($this, 'growtype_extended_cpt_template_redirect'));
 
-        foreach ($this->cpt_keys as $cpt_key) {
+        foreach (self::get_keys() as $cpt_key) {
             $cpt_name = $this->get_cpt_name($cpt_key['value']);
             add_filter('manage_' . $cpt_name . '_posts_columns', array ($this, 'growtype_extended_cpt_extra_columns'));
             add_action('manage_' . $cpt_name . '_posts_custom_column', array ($this, 'growtype_extended_cpt_custom_extra_columns'), 10, 2);
@@ -22,6 +20,11 @@ class Growtype_Cpt_Crud
          * Restrict REST API access
          */
         add_filter('rest_authentication_errors', array ($this, 'restrict_rest_api_access'));
+    }
+
+    function get_keys()
+    {
+        return Growtype_Cpt::get_keys();
     }
 
     function restrict_rest_api_access($result)
@@ -93,7 +96,7 @@ class Growtype_Cpt_Crud
      */
     function growtype_extended_cpt_register()
     {
-        foreach ($this->cpt_keys as $cpt_key) {
+        foreach (self::get_keys() as $cpt_key) {
             $key_name = $cpt_key['name'];
             $key_value = $cpt_key['value'];
 
@@ -236,7 +239,7 @@ class Growtype_Cpt_Crud
     function growtype_extended_cpt_template_redirect()
     {
         if (is_single()) {
-            foreach ($this->cpt_keys as $cpt_key) {
+            foreach (self::get_keys() as $cpt_key) {
                 $key_value = $cpt_key['value'];
 
                 if (!empty(get_option($key_value . '_value')) && is_singular(get_option($key_value . '_value')) && !get_option($key_value . '_single_page_enabled')) {
