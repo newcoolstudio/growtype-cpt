@@ -14,8 +14,6 @@ class Growtype_Cpt_Crud
             add_action('manage_' . $cpt_name . '_posts_custom_column', array ($this, 'growtype_extended_cpt_custom_extra_columns'), 10, 2);
         }
 
-        add_filter('growtype_customizer_extend_available_pages', array ($this, 'extend_available_pages'), 1);
-
         /**
          * Restrict REST API access
          */
@@ -44,15 +42,6 @@ class Growtype_Cpt_Crud
         }
 
         return $result;
-    }
-
-    function extend_available_pages($customizer_available_pages)
-    {
-        foreach (Growtype_Cpt::get_active_post_types() as $active_post_type) {
-            $customizer_available_pages[$active_post_type['value']] = 'CPT - ' . $active_post_type['label'];
-        }
-
-        return $customizer_available_pages;
     }
 
     /**

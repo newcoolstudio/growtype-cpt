@@ -64,6 +64,8 @@ class Growtype_Cpt
      */
     protected static $_instance = null;
 
+    private $growtype_cpt;
+
     /**
      * Define the core functionality of the plugin.
      *

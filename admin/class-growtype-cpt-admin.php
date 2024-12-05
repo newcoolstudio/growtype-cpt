@@ -31,6 +31,7 @@ class Growtype_Cpt_Admin
      * @var      string $growtype_cpt The ID of this plugin.
      */
     private $growtype_cpt;
+    private $methods;
 
     /**
      * The version of this plugin.
